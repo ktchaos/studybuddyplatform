@@ -1,1 +1,3 @@
-# studybuddyplatform
+# Study Buddy Platform
+
+

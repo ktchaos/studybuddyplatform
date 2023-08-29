@@ -8,3 +8,6 @@ class Buddy(ABC):
         self.age = age # idade
         self.avatar = avatar # ? photo perfil
         self.interest_subjects = interest_subject # armazena assuntos de interesse
+
+    def printBuddy(self):
+        print(f'[Buddy {self.id}] {self.name}, {self.age} anos.')

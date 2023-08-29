@@ -4,35 +4,33 @@ from StudentViewModel import StudentViewModel
 #mensagem padrao do sistema
 def default_options():
     while True:
-        print("Escolha a opcao:\n[1] Listar estudantes.\n[2] Criar estudantes.\n[3] Sair.")
+        print("Escolha a opcao:\n[1] Listar buddies.\n[2] Criar buddies.\n[3] Sair.")
         option = int(input())
         if(option in range(1,4)):
             return option
-        print("opcao invalida\n\n")
+        print("Opcao invalida\n\n")
 
 
 def main():
 
-    newId = 0 # contador de ids 
-    students = [] #armazena estudantes
+    managerVm = ManagerViewModel(id=1, name="Gestor")
+    newId = 0 # Contador de ids 
 
     while True:
-        #obtem opcao
+        # Menu de opçoes
         option = default_options()
 
         if option == 1:
-            #lista usuarios
-            for student in students:
-               student.print()
+            # Lista usuarios
+            managerVm.getBuddies()
         elif option == 2:
-            #pega informacoes do estudante
-            student = StudentViewModel()
-            student.createAccount(newId)
+            # Pega informacoes para novo usuario
+            studentVm = StudentViewModel()
+            newStudent = studentVm.createAccount(newId)
             newId += 1
-            #salva estudante
-            students.append(student)
+            # Salva na ManagerViewModel
+            managerVm.saveBuddy(newStudent)
         else:
             break
-
     
 main()

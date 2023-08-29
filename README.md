@@ -22,4 +22,4 @@ Raoni Kulesza
 
 ### Diagrama de Classes V0.0.1
 
-![Alt text](./assets/studybuddyplat.drawio.png "Diagrama de Classes V0.0.1")
+![Alt text](./assets/studybplat.drawio.png "Diagrama de Classes V0.0.1")

@@ -11,4 +11,4 @@ class Student(Buddy):
         super().__init__(id, name, age, avatar, interest_subject)
 
     def printBuddy(self):
-        print(f'[Buddy {self.id}] {self.name}, {self.age} anos.')
+        print(f'[Student {self.id}] {self.name}, {self.age} anos.')

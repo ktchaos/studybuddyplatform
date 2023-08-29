@@ -2,7 +2,7 @@ from ManagerViewModel import ManagerViewModel
 from StudentViewModel import StudentViewModel
 
 #mensagem padrao do sistema
-def default_options():
+def menu():
     while True:
         print("Escolha a opcao:\n[1] Listar buddies.\n[2] Criar buddies.\n[3] Sair.")
         option = int(input())
@@ -18,7 +18,7 @@ def main():
 
     while True:
         # Menu de opçoes
-        option = default_options()
+        option = menu()
 
         if option == 1:
             # Lista usuarios

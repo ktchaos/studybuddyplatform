@@ -1,6 +1,6 @@
 # Study Buddy Platform
 
-Projeto desenvolvido para a disciplina de Métodos de Projetos de Software.
+Esse respositório contempla Projeto desenvolvido para a disciplina de Métodos de Projetos de Software.
 
 ## Professor
 
@@ -19,3 +19,7 @@ Raoni Kulesza
 ### Diagrama de Casos de Uso V0.0.1
 
 ![Alt text](./assets/diagrama_casos_uso_v0.0.1.png "Diagrama de Casos de Uso V0.0.1")
+
+### Diagrama de Classes V0.0.1
+
+![Alt text](./assets/studdybuddyplat.drawio.png "Diagrama de Classes V0.0.1")

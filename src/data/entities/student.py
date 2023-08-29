@@ -12,3 +12,7 @@ class Student(Buddy):
 
     def printBuddy(self):
         print(f'[Student {self.id}] {self.name}, {self.age} anos.')
+
+    # Função do Student para entrar em uma sala
+    def enterRoom():
+        pass

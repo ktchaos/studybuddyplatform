@@ -2,18 +2,21 @@ import pickle
 
 class BuddyFile():
 
+    #carrega buddies salvos no arquivo
     def loadBuddies():
         try:
-            with open('./src/presantation/infra/data/buddies.bin', 'rb') as fp:
+            with open('./src/infra/saveLocalData/buddies.bin', 'rb') as fp:
                 buddy_list = pickle.load(fp)
                 return buddy_list
         except FileNotFoundError:
+            # se o arquivo nao existe, retorna uma lista vazia
             print('Arquivo nao encontrado.')
             return []
 
     def saveBuddies(buddies):
         try:
-            with open('./src/presentation/infra/data/buddies.bin', 'wb') as fp:
+            # salva a lista atualizada no arquivo
+            with open('./src/infra/saveLocalData/buddies.bin', 'wb') as fp:
                 pickle.dump(buddies, fp)
         except FileNotFoundError:
             print('Erro ao salvar buddy. Arquivo nao encontrado.')

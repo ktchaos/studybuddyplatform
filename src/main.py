@@ -1,23 +1,8 @@
-from ManagerViewModel import ManagerViewModel
-from StudentViewModel import StudentViewModel
-
-class MenuOpcaoInvalida(Exception):
-    "valor da opcao invalida"
-    def __init__(self, message="valor da opcao invalida"):
-        self.message = message
-        super().__init__(self.message)
-
-#mensagem padrao do sistema
-def menu():
-    print("Escolha a opcao:\n[1] Listar buddies.\n[2] Criar buddies.\n[3] Sair.")
-    try: 
-        option = int(input())
-        if(option in range(1,4)):
-            return option
-        raise MenuOpcaoInvalida
-    except ValueError:
-        raise MenuOpcaoInvalida
-
+from data.control.ManagerViewModel import ManagerViewModel
+from data.control.StudentViewModel import StudentViewModel
+from presentation.presentationExceptions import MenuOpcaoInvalida
+from presentation.presentationExceptions import MenuExitOption
+from presentation.menu import Menu
 
 def main():
 
@@ -27,7 +12,7 @@ def main():
 
         try:
             # Menu de opçoes
-            option = menu()
+            option = Menu.getOption()
 
             if option == 1:
                 # Lista usuarios
@@ -40,10 +25,7 @@ def main():
                 newStudent = studentVm.createAccount(managerVm.getLastBuddyId())
                 # Salva na ManagerViewModel
                 managerVm.saveBuddy(newStudent)
-            else:
-                print("Encerrando...\n======= Study Buddy Platform =======")
-                break
-        except KeyboardInterrupt:
+        except (KeyboardInterrupt, MenuExitOption): 
             print("\nEncerrando...\n======= Study Buddy Platform =======")
             break
         except MenuOpcaoInvalida as exc:

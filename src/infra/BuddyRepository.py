@@ -4,7 +4,7 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-from entities.buddy import Buddy
+from data.entities.buddy import Buddy
 import requests
 import json
 

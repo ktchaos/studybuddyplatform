@@ -8,11 +8,11 @@ Raoni Kulesza
 
 ## Integrantes
 
-20230145258  André Iarley Soares De Cruz        		          
-20180161275  Calebe Rodrigues De Almeida        			      
-20190023871  Lucas Eduardo Melo Alves    	 			  
-20180081254  Maria Catarina Serrano De Lacerda     		
-20180002250  Vinicius Amaral Monteiro De Almeida    		
+20230145258  André Iarley Soares De Cruz<br>
+20180161275  Calebe Rodrigues De Almeida<br>
+20190023871  Lucas Eduardo Melo Alves <br>
+20180081254  Maria Catarina Serrano De Lacerda <br> 		
+20180002250  Vinicius Amaral Monteiro De Almeida  <br> 		  		
 
 ## Diagramas
 

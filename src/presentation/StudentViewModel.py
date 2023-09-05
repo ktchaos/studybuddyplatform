@@ -6,6 +6,8 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 from BuddyViewModel import BuddyViewModel
 from data.entities.student import Student
+from util.UserValidator import userValidator
+from util.PasswordException import passwordException
 
 class ErrorName(Exception):
     def authenticate_name(self, name):
@@ -36,10 +38,23 @@ class StudentViewModel(BuddyViewModel):
         print("Digite sua idade:")
         age = int(input())
 
+        while True:
+            print("Digite sua senha: ")
+            password = input()
+
+            validator = userValidator(password)
+            try:
+                validator.validatePassword()
+                break
+            except passwordException as e:
+                print(f"Erro de validação de senha: {e}")
+                print("Tente novamente.")
+
         createdStudent = Student(
             id=id,
             name=name,
             age=age,
+            password=password,
             avatar="",
             interest_subject=[]
         )

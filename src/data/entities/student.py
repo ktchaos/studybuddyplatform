@@ -7,8 +7,8 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 from data.entities.buddy import Buddy
 
 class Student(Buddy):
-    def __init__(self, id, name, age, avatar, interest_subject):
-        super().__init__(id, name, age, avatar, interest_subject)
+    def __init__(self, id, name, age, password, avatar, interest_subject):
+        super().__init__(id, name, age, password, avatar, interest_subject)
 
     def printBuddy(self):
         print(f'[Student {self.id}] {self.name}, {self.age} anos.')

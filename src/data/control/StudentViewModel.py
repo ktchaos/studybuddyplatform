@@ -4,7 +4,7 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-from BuddyViewModel import BuddyViewModel
+from data.control.BuddyViewModel import BuddyViewModel
 from data.entities.student import Student
 from util.UserValidator import userValidator
 from util.PasswordException import passwordException

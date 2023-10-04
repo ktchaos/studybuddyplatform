@@ -5,7 +5,9 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 from data.entities.manager import Manager
+from data.entities.room import Room
 from infra.BuddyFile import BuddyFile
+from infra.RoomFile import RoomFile
 
 class ManagerViewModel:
 
@@ -14,6 +16,7 @@ class ManagerViewModel:
         self.name = name
         self.manager = Manager()
         self.currentBuddies = BuddyFile.loadBuddies()
+        self.rooms: [Room] = []#RoomFile.loadRooms()
         ## pega o id do ultimo buddy salvo  
         try:
             self.LastBuddyId = self.currentBuddies[-1].id
@@ -29,6 +32,16 @@ class ManagerViewModel:
     def saveBuddy(self, buddy):
         self.currentBuddies.append(buddy)
         BuddyFile.saveBuddies(self.currentBuddies)
+
+    # Adiciona nova sala
+    def addRoom(self, room):
+        self.rooms.append(room)
+        RoomFile.save
+
+     # Listar usuarios
+    def getRooms(self):
+        for room in self.rooms:
+            room.printRoom()
 
     def getLastBuddyId(self):
         return self.LastBuddyId

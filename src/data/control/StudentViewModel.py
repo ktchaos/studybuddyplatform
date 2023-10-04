@@ -6,6 +6,7 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 from data.control.BuddyViewModel import BuddyViewModel
 from data.entities.student import Student
+from data.entities.room import Room
 from util.UserValidator import userValidator
 from util.PasswordException import passwordException
 
@@ -60,4 +61,7 @@ class StudentViewModel(BuddyViewModel):
         )
         self.student = createdStudent
         return createdStudent
+    
+    def enterRoom(self, room: Room):
+        room.letStudentEnterRoom(self.student)
     

@@ -4,12 +4,14 @@ from presentation.presentationExceptions import MenuExitOption
 class Menu():
 #mensagem padrao do sistema
     def getOption():
-        print("Escolha a opcao:\n[1] Listar buddies.\n[2] Criar buddies.\n[3] Sair.")
+        print(
+            "Escolha a opcao:\n[1] Listar buddies.\n[2] Criar buddies.\n[3] Criar sala.\n[4] Listar salas.\n[5] Entrar na sala.\n[6] Listar categorias.\n[7] Sair."
+            )
         try: 
             option = int(input())
-            if(option == 3):
+            if(option == 5):
                 raise MenuExitOption
-            elif(option in range(1,3)):
+            elif(option in range(1,7)):
                 return option
             raise MenuOpcaoInvalida
         except ValueError:

@@ -5,6 +5,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 from data.entities.room import Room
+from data.entities.category import Category
 
 class RoomAuthenticationError(Exception):
     def authenticate_name(self, title):
@@ -33,7 +34,7 @@ class RoomViewModel:
         print("Digite a descrição da sala:")
         description = input()
 
-        createdRoom = Room(id=id, title=title, description=description)
+        createdRoom = Room(id=id, title=title, description=description, category=Category(id=1, title="test", description="test 2"))
         self.room = createdRoom
         return createdRoom
     

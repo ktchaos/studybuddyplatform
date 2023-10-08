@@ -4,8 +4,8 @@ import os
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-from data.entities.manager import Manager
 from data.entities.room import Room
+from data.entities.manager import Manager
 from infra.BuddyFile import BuddyFile
 from infra.RoomFile import RoomFile
 
@@ -36,7 +36,7 @@ class ManagerViewModel:
     # Adiciona nova sala
     def addRoom(self, room):
         self.rooms.append(room)
-        RoomFile.save
+        #RoomFile.addRooms(self.rooms)
 
      # Listar usuarios
     def getRooms(self):

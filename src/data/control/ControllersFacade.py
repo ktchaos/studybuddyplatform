@@ -17,13 +17,19 @@ class ControllersFacade:
         return cls._instance
 
     def listBuddies(self):
-        self.managerVm.getBuddies()
+        students = self.studentVm.getStudents()
+        for student in students:
+            student.printBuddy()
 
     def listRooms(self):
-        self.managerVm.getRooms()
+        rooms = self.roomVm.getRooms()
+        for room in rooms:
+            room.print()
 
     def listCategories(self):
-        self.categoryVm.getCategories()
+        categories = self.categoryVm.getCategories()
+        for category in categories:
+            category.print()
 
     def createBuddie(self):
         # Pega informacoes para novo usuario
@@ -32,8 +38,26 @@ class ControllersFacade:
         newStudent = self.studentVm.createAccount(self.managerVm.getLastBuddyId())
         #Salva na ManagerViewModel
         self.managerVm.saveBuddy(newStudent)
+
+    def createStudent(self, id, name, age, password):
+        if id == None:
+            id = self.studentVm.getLastStudentId() + 1
+            self.studentVm.incrementLastStudentId()
+        newStudent = self.studentVm.create(id, name, age, password)
+        self.studentVm.saveStudent(newStudent)
+
+    def createCategory(self, id, title, description):
+        if id == None:
+            id = self.categoryVm.getLastCategoryId() + 1
+        category = self.categoryVm.createCategory(id, title, description)
+        self.categoryVm.save(category)
+        self.categoryVm.incrementLastCategoryId()
         
-    def createRoom(self, id):
-        createdRoom = self.roomVm.createRoom(id)
-        self.managerVm.addRoom(createdRoom)
+    def createRoom(self, id, title, description, categoryId):
+        if id == None:
+            id = self.roomVm.getLastRoomId() + 1
+        category = self.categoryVm.getCategoryById(categoryId)
+        createdRoom = self.roomVm.createRoom(id, title, description, category)
+        self.roomVm.save(createdRoom)
+        self.roomVm.incrementLastRoomId()
   

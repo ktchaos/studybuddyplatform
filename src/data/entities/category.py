@@ -8,11 +8,12 @@ class Category:
 
     def __init__(self, id, title, description):
         from data.entities.room import Room
-
         self.title = title
+        self.id = id
+        self.description = description
         self.rooms: [Room] = []
     
-    def printCategory(self):
-        print(f'[Categoria {self.title}].')
+    def print(self):
+        print(f'[{self.id}] {self.title}.')
         for room in self.rooms:
-            room.printRoom()
+            room.print()

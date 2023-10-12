@@ -6,6 +6,7 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 
 from data.entities.room import Room
 from data.entities.category import Category
+from infra.HandleFile import HandleFile
 
 class RoomAuthenticationError(Exception):
     def authenticate_name(self, title):
@@ -15,26 +16,29 @@ class RoomAuthenticationError(Exception):
             raise RoomAuthenticationError("O título precisa ter no mínimo 8 caracteres.")
 
 class RoomViewModel:
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self):
+        self.currentRooms: [Room] = HandleFile().loadRooms()
+        ## pega o id do ultimo buddy salvo  
+        try:
+            self.lastRoomId = self.currentRooms[-1].id
+        except IndexError:
+            self.lastRoomId = -1
 
-    def createRoom(self, id) -> Room:
-        while True:
-            try:
-                print("Digite o título da sala:")
-                title = input()
-                authenticate = RoomAuthenticationError()
-                authenticate.authenticate_name(title)
-            except RoomAuthenticationError as error:
-                print("Erro:", error)
-                continue
-            else:
-                break
-            
-        print("Digite a descrição da sala:")
-        description = input()
-
-        createdRoom = Room(id=id, title=title, description=description, category=Category(id=1, title="test", description="test 2"))
+    def createRoom(self, id, title, description, category: Category) -> Room:
+        createdRoom = Room(id=id, title=title, description=description, category=category)
         self.room = createdRoom
         return createdRoom
+    
+    def save(self, room: Room):
+        self.currentRooms.append(room)
+        HandleFile().saveRooms(self.currentRooms)
+
+    def getRooms(self):
+        return self.currentRooms
+
+    def getLastRoomId(self):
+        return self.lastRoomId
+    
+    def incrementLastRoomId(self):
+        self.lastRoomId += 1
     

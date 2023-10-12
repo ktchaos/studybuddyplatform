@@ -15,7 +15,7 @@ class Room:
         self.buddiesInside = []
         self.category = category
     
-    def printRoom(self):
+    def print(self):
         print(f'[Sala {self.id}] - {self.title}, {self.description}.')
 
     def letStudentEnterRoom(self, buddy):

@@ -5,8 +5,10 @@ from presentation.menu import Menu
 from presentation.test import Test
 from infra.HttpServer import HttpServer
 
+from presentation.studentPresentation import studentPresentation
+from presentation.categoryPresentation import categoryPresentation
 from data.control.ControllersFacade import ControllersFacade
-
+from presentation.roomPresentation import RoomPresentation
 port = 8080
 
 def main():
@@ -22,9 +24,11 @@ def main():
             if option == 1:
                 fa.listBuddies()
             elif option == 2:
-                fa.createBuddie()
+                name, age, password = studentPresentation.getCreateData()
+                fa.createStudent(None, name, age, password)
             elif option == 3:
-                fa.createRoom(id=1)
+                title, description, categoryId = RoomPresentation.getCreateData()
+                fa.createRoom(None, title, description, categoryId)
             elif option == 4:
                 fa.listRooms()
             elif option == 5:
@@ -33,8 +37,11 @@ def main():
             elif option == 6:
                 fa.listCategories()
             elif option == 7:
-                Test.runTest()
+                title, description = categoryPresentation.getCreateData()
+                fa.createCategory(None, title, description) 
             elif option == 8:
+                Test.runTest()
+            elif option == 9:
                 # inicia servidor
                 with socketserver.TCPServer(("", port), HttpServer) as httpd:
                     print(f"Servidor rodando na porta {port}")

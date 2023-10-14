@@ -26,6 +26,8 @@ def main():
             elif option == 2:
                 name, age, password = studentPresentation.getCreateData()
                 fa.createStudent(None, name, age, password)
+                # fa.createBuddie()
+                # fa.createBuddyRemote()
             elif option == 3:
                 title, description, categoryId = RoomPresentation.getCreateData()
                 fa.createRoom(None, title, description, categoryId)
@@ -40,14 +42,15 @@ def main():
                 title, description = categoryPresentation.getCreateData()
                 fa.createCategory(None, title, description) 
             elif option == 8:
-                Test.runTest()
+                fa.login()
             elif option == 9:
                 # inicia servidor
                 with socketserver.TCPServer(("", port), HttpServer) as httpd:
                     print(f"Servidor rodando na porta {port}")
                     # Inicia o servidor e fica em execução até ser interrompido (Ctrl+C)
                     httpd.serve_forever()
-        except (KeyboardInterrupt, MenuExitOption): 
+        except (KeyboardInterrupt, MenuExitOption):
+            fa.saveChanges()
             print("\nEncerrando...\n======= Study Buddy Platform =======")
             break
         except MenuOpcaoInvalida as exc:

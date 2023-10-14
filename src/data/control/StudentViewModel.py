@@ -10,6 +10,7 @@ from data.entities.room import Room
 from util.PasswordValidator import PasswordValidator
 from util.PasswordException import passwordException
 from infra.HandleFile import HandleFile
+from infra.factories.BuddyRemoteDataBaseFactory import BuddyRemoteDataBaseFactory
 
 class ErrorName(Exception):
     def authenticate_name(self, name):
@@ -22,12 +23,20 @@ class ErrorName(Exception):
 
 class StudentViewModel():
     def __init__(self):
-        self.currentStudents: [Student] = HandleFile().loadStudents()
+        #  CARREGAR REMOTAMENTE PARA EVITAR CONFLITO DE ARQUIVOS
+        self.currentStudents: [Student] = []
+        self.remoteDb = BuddyRemoteDataBaseFactory.makeDataBase()
+        self.loadStudents()
+
+        # self.currentStudents: [Student] = HandleFile().loadStudents()
         ## pega o id do ultimo buddy salvo  
-        try:
-            self.lastStudentId = self.currentStudents[-1].id
-        except IndexError:
-            self.lastStudentId = -1
+        # try:
+        #     self.lastStudentId = self.currentStudents[-1].id
+        # except IndexError:
+        #     self.lastStudentId = -1
+
+    def loadStudents(self):
+        self.currentStudents = self.remoteDb.loadBuddies()
 
     def create(self, id, name, age, password):
         try:
@@ -44,6 +53,7 @@ class StudentViewModel():
             print("Tente novamente.")
         #validate password
         createdStudent = Student(
+            remoteId="",
             id=id,
             name=name,
             age=age,

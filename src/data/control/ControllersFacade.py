@@ -2,6 +2,7 @@ from .ManagerViewModel import ManagerViewModel
 from .RoomViewModel import RoomViewModel
 from .CategoryViewModel import CategoryViewModel
 from .StudentViewModel import StudentViewModel
+from .LoginViewModel import LoginViewModel
 
 class ControllersFacade:
     _instance = None
@@ -13,6 +14,7 @@ class ControllersFacade:
             cls._instance.roomVm = RoomViewModel()
             cls._instance.categoryVm = CategoryViewModel()
             cls._instance.studentVm = StudentViewModel()
+            cls._instance.loginVm = LoginViewModel()
 
         return cls._instance
 
@@ -60,4 +62,19 @@ class ControllersFacade:
         createdRoom = self.roomVm.createRoom(id, title, description, category)
         self.roomVm.save(createdRoom)
         self.roomVm.incrementLastRoomId()
-  
+
+    def createBuddyRemote(self):
+        self.managerVm.incrementLastBuddyId()
+        newStudent = self.studentVm.createAccount(self.managerVm.getLastBuddyId())
+        self.managerVm.saveBuddyRemote(newStudent)
+
+    def login(self):
+        print("Digite seu username:")
+        username = input()
+        print("Digite sua senha:")
+        password = input()
+        self.loginVm.currentBuddies = self.managerVm.currentBuddies
+        self.loginVm.authenticate(username, password)
+
+    def saveChanges(self):
+        self.managerVm.updateChanges()

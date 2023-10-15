@@ -2,8 +2,8 @@ from data.control.RoomViewModel import RoomViewModel
 from data.control.CategoryViewModel import CategoryViewModel
 from data.control.ManagerViewModel import ManagerViewModel
 from data.control.StudentViewModel import StudentViewModel
-from presentation.presentationExceptions import MenuOpcaoInvalida
-from presentation.presentationExceptions import MenuExitOption
+# from presentation.presentationExceptions import MenuOpcaoInvalida
+# from presentation.presentationExceptions import MenuExitOption
 from presentation.menu import Menu
 
 class Test():

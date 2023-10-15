@@ -1,0 +1,193 @@
+<<Buddy>>
+    age
+    avatar
+    id
+    interest_subjects
+    name
+    password
+    remoteId
+    printBuddy()
+
+Category 
+    description
+    id
+    rooms : list
+    title
+    print()
+
+Manager 
+    buddies : list
+    rooms : list
+
+Room 
+    buddiesInside : list
+    category : Category
+    description
+    id
+    title
+    letStudentEnterRoom(buddy)
+    print()
+
+Student 
+    enterRoom()*
+    printBuddy()
+
+
+
+ControllersFacade 
+    createBuddie()
+    createBuddyRemote()
+    createCategory(id, title, description)
+    createRoom(id, title, description, categoryId)
+    createStudent(id, name, age, password)
+    listBuddies()
+    listCategories()
+    listRooms()
+    login()
+    saveChanges()
+
+BuddyViewModel 
+    create()*
+
+CategoryViewModel 
+    currentCategories : list
+    lastCategoryId : int
+    createCategory(id, title, description) Category
+    getCategories()
+    getCategoryById(id)
+    getLastCategoryId()
+    incrementLastCategoryId()
+    save(category: Category)
+
+LoginViewModel 
+    currentBuddies : list
+    currentPassword : str
+    currentUsername : str
+    remoteDb
+    authenticate(username, password)
+
+ManagerViewModel
+    LastBuddyId
+    currentBuddies : list
+    id
+    localDb
+    manager
+    name
+    remoteDb
+    rooms : list
+    addRoom(room)
+    gerarRelatorio()
+    getLastBuddyId()
+    getRooms()
+    incrementLastBuddyId()
+    loadBuddies()
+    saveBuddy(buddy)
+    saveBuddyRemote(buddy)
+    saveChanges()
+    updateChanges()
+
+RoomViewModel 
+    currentRooms : list
+    lastRoomId : int
+    room
+    createRoom(id, title, description, category: Category) Room
+    getLastRoomId()
+    getRooms()
+    incrementLastRoomId()
+    save(room: Room)
+
+StudentViewModel 
+    currentStudents : list
+    lastStudentId
+    remoteDb
+    student
+    create(id, name, age, password)
+    enterRoom(room: Room)
+    getLastStudentId()
+    getStudents()
+    incrementLastStudentId()
+    loadStudents()
+    saveStudent(student: Student)
+
+
+<<BuddyDataBase>>
+    loadBuddies()*
+    saveBuddies(buddies) *
+
+BuddyLocalDataBase
+    loadBuddies()
+    saveBuddies(buddies)
+
+BuddyRemoteDataBase
+    dbUrl : str
+    deleteBuddy()
+    getBuddy(buddyId)
+    getBuddyByName()
+    loadBuddies()
+    saveBuddies(buddies)
+    updateBuddy(buddyId, name, avatar, interestSubjects)
+    updateBuddyRemoteId(remoteId)
+
+
+<<BuddyDataBaseFactory>>
+    makeDataBase()*
+
+BuddyLocalDataBaseFactory
+    makeDataBase()
+
+BuddyRemoteDataBaseFactory
+    makeDataBase()
+
+
+HandleFile 
+    loadCategories()
+    loadFile(fileName)
+    loadRooms()
+    loadStudents()
+    saveCategories(categories)
+    saveRooms(rooms)
+    saveStudents(students)
+    saveToFile(fileName, content)
+
+HttpServer 
+    do_GET()
+
+
+
+ErrorName 
+    authenticate_name(name)
+
+MenuExitOption 
+    message : str
+
+MenuOpcaoInvalida 
+    message : str
+
+PasswordValidator 
+    password
+    validateLength()
+    validateLetterNumber()
+    validateMinNumber()
+    validatePassword()
+
+RoomAuthenticationError 
+    authenticate_name(title)
+
+passwordException 
+    message
+
+
+RoomPresentation 
+    getCreateData()
+
+Menu 
+    getOption()
+
+categoryPresentation 
+    getCreateData()
+
+studentPresentation 
+    getCreateData()
+
+main
+    init()

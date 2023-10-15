@@ -20,14 +20,14 @@ Raoni Kulesza
 python version 3.10.11
 
 ### run
-pip install -r requirements.txt
+pip install -r requirements.txt  
 python ./src/main.py	
 
 ## Diagramas
 
 ### Diagrama de Classes V0.0.2
 
-![Alt text](./assets/studybplat.drawio.png "Diagrama de Classes V0.0.1")
+![Alt text](./assets/studybplat.drawio.png "Diagrama de Classes V0.0.2")
 
 ### Diagrama de Casos de Uso V0.0.1
 

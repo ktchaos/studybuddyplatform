@@ -14,7 +14,7 @@ Raoni Kulesza
 20180081254  Maria Catarina Serrano De Lacerda <br> 		
 20180002250  Vinicius Amaral Monteiro De Almeida  <br> 	
 
-## intalação
+## Instalação
 
 ### python version
 python version 3.10.11

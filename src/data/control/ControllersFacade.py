@@ -2,7 +2,7 @@ from .ManagerViewModel import ManagerViewModel
 from .RoomViewModel import RoomViewModel
 from .CategoryViewModel import CategoryViewModel
 from .StudentViewModel import StudentViewModel
-from .LoginViewModel import LoginViewModel
+from .Login.LoginViewModel import LoginViewModel
 
 class ControllersFacade:
     _instance = None

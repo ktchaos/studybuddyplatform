@@ -1,29 +1,25 @@
-import sys
-import os
-
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.dirname(SCRIPT_DIR))
+from .Authentication import Authentication
 
 from infra.factories.BuddyRemoteDataBaseFactory import BuddyRemoteDataBaseFactory
 from data.entities.buddy import Buddy
 
-class LoginViewModel:
-
+# Autenticação local
+class LocalAuthentication(Authentication):
     def __init__(self):
         self.currentUsername = ""
         self.currentPassword = ""
         self.currentBuddies: [Buddy] = []
         self.remoteDb = BuddyRemoteDataBaseFactory.makeDataBase()
 
-    def authenticate(self, username, password):
+    def login(self, username, password):
         for buddy in self.currentBuddies:
             if buddy.name == username:
                 if buddy.password == password:
                     print("Bem vindo!")
                 else:
-                    print("Credenciais incorretas")
-            return
-                    
+                    print("Credenciais incorretas.")
+            else:
+                print("Usuário não encontrado, tente novamente.")
 
-        print("Usuário não encontrado, tente novamente")
-            
+    def logout(self):
+        pass

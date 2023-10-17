@@ -26,7 +26,6 @@ def main():
             elif option == 2:
                 name, age, password = studentPresentation.getCreateData()
                 fa.createStudent(None, name, age, password)
-                # fa.createBuddie()
                 # fa.createBuddyRemote()
             elif option == 3:
                 title, description, categoryId = RoomPresentation.getCreateData()

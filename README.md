@@ -25,12 +25,12 @@ python ./src/main.py
 
 ## Diagramas
 
-### Diagrama de Classes V0.0.2
+### Diagrama de Classes V0.0.3
 
 ![Alt text](./assets/diagrama_classes_v0.0.3.png "Diagrama de Classes V0.0.3")
 
-### Diagrama de Casos de Uso V0.0.1
+### Diagrama de Casos de Uso V0.0.3
 
-![Alt text](./assets/diagrama_casos_uso_v0.0.2.png "Diagrama de Casos de Uso V0.0.1")
+![Alt text](./assets/diagrama_casos_uso_v0.0.2.png "Diagrama de Casos de Uso V0.0.2")
 
 

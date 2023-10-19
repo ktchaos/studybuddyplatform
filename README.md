@@ -27,6 +27,13 @@ python ./src/main.py
 
 ### Diagrama de Classes V0.0.3
 
+Legenda:  
+🟩 Padrão Facade  
+🟦 Padrão Singleton  
+🟨 Padrão Template  
+🟧 Padrão Adapter  
+🟪 Padrão Factory  
+
 ![Alt text](./assets/diagrama_classes_v0.0.3.png "Diagrama de Classes V0.0.3")
 
 ### Diagrama de Casos de Uso V0.0.3

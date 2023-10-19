@@ -22,8 +22,10 @@ class LoginViewModel:
         auth = AuthAdapter(auth_type)
 
         try:
-            auth.login(username, password)
-            print('Autenticado com sucesso!')
+            print('----------------------------')
+            result = auth.login(username, password)
+            return result
+            
         except Exception as e:
             print('Credenciais inválidas: ' + str(e))
 

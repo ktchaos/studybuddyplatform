@@ -19,13 +19,15 @@ class BuddyRemoteDataBase(BuddyDataBase):
     def saveBuddies(self, buddies):
         for buddy in buddies:
             parameters = {
+                'isLogged': 'False',
                 'remoteId': "",
                 'id': buddy.id,
                 'name': buddy.name,
                 'age': buddy.age,
                 'password': buddy.password,
                 'avatar': buddy.avatar,
-                'interestSubjects': buddy.interest_subjects
+                'interestSubjects': buddy.interest_subjects,
+                'numberOfAccessesLastMonth': buddy.numberOfAccessesLastMonth
             }
             createRequest = requests.post(f'{self.dbUrl}/Buddies/.json', data=json.dumps(parameters))
 
@@ -90,13 +92,15 @@ class BuddyRemoteDataBase(BuddyDataBase):
             # print(f'Chave = {chave}')
             # print(f'Valor = {valor}')
             remoteStudent = Student(
+                isLogged=valor['isLogged'],
                 remoteId=valor['remoteId'],
                 id=valor['id'],
                 name=valor['name'],
                 age=valor['age'],
                 password=valor['password'],
                 avatar=valor['avatar'],
-                interest_subject=[]
+                interest_subject=[],
+                numberOfAccessesLastMonth=valor['numberOfAccessesLastMonth']
             )
             remoteBuddies.append(remoteStudent)
         

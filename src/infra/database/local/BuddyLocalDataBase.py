@@ -1,9 +1,12 @@
 import pickle
 
-class BuddyFile():
+from infra.database.BuddyDataBase import BuddyDataBase
+# from infra.BuddyDataBase import BuddyDataBase
+
+class BuddyLocalDataBase(BuddyDataBase):
 
     #carrega buddies salvos no arquivo
-    def loadBuddies():
+    def loadBuddies(self):
         try:
             with open('./src/infra/saveLocalData/buddies.bin', 'rb') as fp:
                 buddy_list = pickle.load(fp)
@@ -13,7 +16,7 @@ class BuddyFile():
             print('Arquivo nao encontrado.')
             return []
 
-    def saveBuddies(buddies):
+    def saveBuddies(self, buddies):
         try:
             # salva a lista atualizada no arquivo
             with open('./src/infra/saveLocalData/buddies.bin', 'wb') as fp:

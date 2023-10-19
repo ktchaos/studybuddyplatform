@@ -3,15 +3,15 @@ from .RoomViewModel import RoomViewModel
 from .CategoryViewModel import CategoryViewModel
 from .StudentViewModel import StudentViewModel
 from .Login.LoginViewModel import LoginViewModel
-from presentation.ManagerController import ManagerController
-from presentation.BuddyController import BuddyController
+from data.model.HTMLReport import HTMLReport
+from data.model.PDFReport import PDFReport
 
-class ControllersFacade:
+class ManagerFacade:
     _instance = None
 
     def __new__(cls):
         if cls._instance is None:
-            cls._instance = super(ControllersFacade, cls).__new__(cls)
+            cls._instance = super(ManagerFacade, cls).__new__(cls)
             cls._instance.managerVm = ManagerViewModel(id=1, name="Gestor")
             cls._instance.roomVm = RoomViewModel()
             cls._instance.categoryVm = CategoryViewModel()
@@ -70,22 +70,12 @@ class ControllersFacade:
         newStudent = self.studentVm.createAccount(self.managerVm.getLastBuddyId())
         self.managerVm.saveBuddyRemote(newStudent)
 
-    def login(self):
-        print("Digite seu username:")
-        username = input()
-        print("Digite sua senha:")
-        password = input()
-        self.loginVm.currentBuddies = self.managerVm.currentBuddies
-        (isManager, isLogged) = self.loginVm.authenticate(username, password)
-        if isManager and isLogged:
-            managerController = ManagerController()
-            managerController.start()
-        elif isLogged:
-            buddyController = BuddyController()
-            buddyController.start()
-        else:
-            print('-------------- Tente novamente --------------')
-            
+    def generateReport(self):
+        htmlReport = HTMLReport()
+        pdfReport = PDFReport()
+
+        htmlReport.generateReport()
+        pdfReport.generateReport()
 
     def saveChanges(self):
         self.managerVm.updateChanges()

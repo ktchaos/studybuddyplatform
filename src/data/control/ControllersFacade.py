@@ -5,6 +5,8 @@ from .StudentViewModel import StudentViewModel
 from .Login.LoginViewModel import LoginViewModel
 from presentation.ManagerController import ManagerController
 from presentation.BuddyController import BuddyController
+from data.model.HTMLReport import HTMLReport
+from data.model.PDFReport import PDFReport
 
 class ControllersFacade:
     _instance = None
@@ -89,3 +91,19 @@ class ControllersFacade:
 
     def saveChanges(self):
         self.managerVm.updateChanges()
+
+    def createBuddyRemote(self):
+        self.managerVm.incrementLastBuddyId()
+        newStudent = self.studentVm.createAccount(self.managerVm.getLastBuddyId())
+        self.managerVm.saveBuddyRemote(newStudent)
+
+    def generateReport(self):
+        htmlReport = HTMLReport()
+        pdfReport = PDFReport()
+
+        htmlReport.generateReport()
+        pdfReport.generateReport()
+
+    def saveChanges(self):
+        self.managerVm.updateChanges()
+        

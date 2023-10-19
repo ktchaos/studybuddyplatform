@@ -1,5 +1,5 @@
-from presentation.presentationExceptions import MenuOpcaoInvalida
-from presentation.presentationExceptions import MenuExitOption
+from util.exceptions.MenuOpcaoInvalidaException import MenuOpcaoInvalida
+from util.exceptions.MenuExitOptionException import MenuExitOption
 
 class Menu():
 #mensagem padrao do sistema

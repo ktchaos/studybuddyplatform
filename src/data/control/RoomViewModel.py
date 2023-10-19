@@ -8,13 +8,6 @@ from data.entities.room import Room
 from data.entities.category import Category
 from infra.HandleFile import HandleFile
 
-class RoomAuthenticationError(Exception):
-    def authenticate_name(self, title):
-        if not title:
-            raise RoomAuthenticationError("O título da sala não pode ser vazio.")
-        if len(title) < 8:
-            raise RoomAuthenticationError("O título precisa ter no mínimo 8 caracteres.")
-
 class RoomViewModel:
     def __init__(self):
         self.currentRooms: [Room] = HandleFile().loadRooms()

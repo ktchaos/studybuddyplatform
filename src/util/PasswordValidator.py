@@ -1,5 +1,5 @@
 
-from util.PasswordException import passwordException
+from util.exceptions.PasswordException import passwordException
 
 class PasswordValidator:
     def __init__(self, password):

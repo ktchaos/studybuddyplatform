@@ -1,14 +1,13 @@
-import socketserver
-from presentation.presentationExceptions import MenuOpcaoInvalida
-from presentation.presentationExceptions import MenuExitOption
+from util.exceptions.MenuOpcaoInvalidaException import MenuOpcaoInvalida
+from util.exceptions.MenuExitOptionException import MenuExitOption
 from presentation.menu import Menu
-
 from presentation.roomPresentation import RoomPresentation
-from data.control.BuddyFacade import BuddyFacade
+
 
 class BuddyController():
     def start(self):
-        fa = BuddyFacade()
+        from data.control.ControllersFacade import ControllersFacade
+        fa = ControllersFacade()
         while True:
             try:
                 # Menu de opçoes

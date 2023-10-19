@@ -1,19 +1,23 @@
 import socketserver
-from presentation.presentationExceptions import MenuOpcaoInvalida
-from presentation.presentationExceptions import MenuExitOption
+from util.exceptions.MenuOpcaoInvalidaException import MenuOpcaoInvalida
+from util.exceptions.MenuExitOptionException import MenuExitOption
 from presentation.menu import Menu
 from infra.HttpServer import HttpServer
 
 from presentation.studentPresentation import studentPresentation
 from presentation.categoryPresentation import categoryPresentation
-from data.control.ManagerFacade import ManagerFacade
+
+#from data.control.ManagerFacade import ManagerFacade
 from presentation.roomPresentation import RoomPresentation
 
 port = 8080
 
 class ManagerController():
+    
     def start(self):
-        fa = ManagerFacade()
+        from data.control.ControllersFacade import ControllersFacade
+
+        fa = ControllersFacade()
 
         while True:
             try:

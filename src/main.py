@@ -1,31 +1,24 @@
-from data.control.ManagerViewModel import ManagerViewModel
-from data.control.StudentViewModel import StudentViewModel
-from presentation.presentationExceptions import MenuOpcaoInvalida
-from presentation.presentationExceptions import MenuExitOption
+import socketserver
+from util.exceptions.MenuOpcaoInvalidaException import MenuOpcaoInvalida
+from util.exceptions.MenuExitOptionException import MenuExitOption
 from presentation.menu import Menu
+
+from data.control.ControllersFacade import ControllersFacade
 
 def main():
 
-    managerVm = ManagerViewModel(id=1, name="Gestor")
+    fa = ControllersFacade()
 
     while True:
 
         try:
             # Menu de opçoes
-            option = Menu.getOption()
-
+            option = Menu.getOptions()
+            
             if option == 1:
-                # Lista usuarios
-                managerVm.getBuddies()
-            elif option == 2:
-                # Pega informacoes para novo usuario
-                studentVm = StudentViewModel()
-                # incrementa e pega id do ultimo buddy salvo
-                managerVm.incrementLastBuddyId()
-                newStudent = studentVm.createAccount(managerVm.getLastBuddyId())
-                # Salva na ManagerViewModel
-                managerVm.saveBuddy(newStudent)
-        except (KeyboardInterrupt, MenuExitOption): 
+                fa.login()
+        except (KeyboardInterrupt, MenuExitOption):
+            fa.saveChanges()
             print("\nEncerrando...\n======= Study Buddy Platform =======")
             break
         except MenuOpcaoInvalida as exc:

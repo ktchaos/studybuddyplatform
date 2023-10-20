@@ -1,7 +1,7 @@
 
-from util.PasswordException import passwordException
+from util.exceptions.PasswordException import passwordException
 
-class userValidator:
+class PasswordValidator:
     def __init__(self, password):
         self.password = password
 

@@ -7,6 +7,8 @@ from presentation.ManagerController import ManagerController
 from presentation.BuddyController import BuddyController
 from data.model.HTMLReport import HTMLReport
 from data.model.PDFReport import PDFReport
+from .command.CommandIF import Command
+from .command.LoginExternalCommand import LoginExternalCommand
 
 class ControllersFacade:
     _instance = None
@@ -21,6 +23,18 @@ class ControllersFacade:
             cls._instance.loginVm = LoginViewModel()
 
         return cls._instance
+    
+    #funcao que executa o comado
+    def invoker(self, c: Command):
+        return c.execute()
+
+    def login(self, username, password):
+        #cria o comando
+        command = LoginExternalCommand(self, username, password)
+        #executa
+        (isManager, isLogged) = self.invoker(command)
+        return isManager, isLogged
+
 
     def listBuddies(self):
         students = self.studentVm.getStudents()
@@ -70,24 +84,7 @@ class ControllersFacade:
     def createBuddyRemote(self):
         self.managerVm.incrementLastBuddyId()
         newStudent = self.studentVm.createAccount(self.managerVm.getLastBuddyId())
-        self.managerVm.saveBuddyRemote(newStudent)
-
-    def login(self):
-        print("Digite seu username:")
-        username = input()
-        print("Digite sua senha:")
-        password = input()
-        self.loginVm.currentBuddies = self.managerVm.currentBuddies
-        (isManager, isLogged) = self.loginVm.authenticate(username, password)
-        if isManager and isLogged:
-            managerController = ManagerController()
-            managerController.start()
-        elif isLogged:
-            buddyController = BuddyController()
-            buddyController.start()
-        else:
-            print('-------------- Tente novamente --------------')
-            
+        self.managerVm.saveBuddyRemote(newStudent)            
 
     def saveChanges(self):
         self.managerVm.updateChanges()

@@ -5,7 +5,7 @@ from presentation.roomPresentation import RoomPresentation
 
 
 class BuddyController():
-    def start(self):
+    def start():
         from data.control.ControllersFacade import ControllersFacade
         fa = ControllersFacade()
         while True:

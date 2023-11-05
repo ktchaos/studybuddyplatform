@@ -14,7 +14,7 @@ port = 8080
 
 class ManagerController():
     
-    def start(self):
+    def start():
         from data.control.ControllersFacade import ControllersFacade
 
         fa = ControllersFacade()

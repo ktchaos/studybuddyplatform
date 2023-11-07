@@ -31,14 +31,20 @@ class Menu():
 
     def getOptionsForManager():
         print(
-            "Escolha a opcao:\n[1] Listar buddies.\n[2] Criar buddies.\n[3] Criar sala.\n[4] Listar salas.\n[5] Entrar na sala.\n[6] Listar categorias. \n[7] Criar categoria. \n[8] Gerar relatório.\n[9] Iniciar servidor.\n[10] Sair."
+            "Escolha a opcao:\n[1] Listar buddies.\n[2] Criar buddies.\n[3] Atualizar buddies.\n[4] Desfazer alteração de buddies.\n[5] Criar sala.\n[6] Listar salas.\n[7] Entrar na sala.\n[8] Listar categorias. \n[9] Criar categoria. \n[10] Gerar relatório.\n[11] Iniciar servidor.\n[12] Sair."
             )
         try: 
             option = int(input())
-            if(option == 10):
+            if(option == 12):
                 raise MenuExitOption
-            elif(option in range(1,11)):
+            elif(option in range(1,13)):
                 return option
             raise MenuOpcaoInvalida
         except ValueError:
             raise MenuOpcaoInvalida
+        
+
+    def getoptionsUpdateStudent():
+        print("[1] Atualizar nome.\n[2] Atualizar idade.\n[3] Atualizar senha")
+        option = int(input())
+        return option

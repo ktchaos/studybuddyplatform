@@ -31,21 +31,30 @@ class ManagerController():
                     fa.createStudent(None, name, age, password)
                     # fa.createBuddyRemote()
                 elif option == 3:
+                    fa.listBuddies()
+                    name = studentPresentation.selectStudent()
+                    fa.selectStudent(name)
+                    selection = Menu.getoptionsUpdateStudent()
+                    update = studentPresentation.UpdateStudent(selection)
+                    fa.updateStudent(name,update,selection)
+                elif option == 4:
+                    fa.backupStudent()
+                elif option == 5:
                     title, description, categoryId = RoomPresentation.getCreateData()
                     fa.createRoom(None, title, description, categoryId)
-                elif option == 4:
+                elif option == 6:
                     fa.listRooms()
-                elif option == 5:
+                elif option == 7:
                     pass # Entrar na sala
                     #studentVm.enterRoom(room=roomVm.room)
-                elif option == 6:
+                elif option == 8:
                     fa.listCategories()
-                elif option == 7:
+                elif option == 9:
                     title, description = categoryPresentation.getCreateData()
                     fa.createCategory(None, title, description)
-                elif option == 8:
+                elif option == 10:
                     fa.generateReport()
-                elif option == 9:
+                elif option == 11:
                     # inicia servidor
                     with socketserver.TCPServer(("", port), HttpServer) as httpd:
                         print(f"Servidor rodando na porta {port}")

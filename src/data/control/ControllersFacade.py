@@ -3,6 +3,7 @@ from .RoomViewModel import RoomViewModel
 from .CategoryViewModel import CategoryViewModel
 from .StudentViewModel import StudentViewModel
 from .Login.LoginViewModel import LoginViewModel
+from .MementoAtualizacao import MementoAtualizacao
 from presentation.ManagerController import ManagerController
 from presentation.BuddyController import BuddyController
 from data.model.HTMLReport import HTMLReport
@@ -21,6 +22,7 @@ class ControllersFacade:
             cls._instance.categoryVm = CategoryViewModel()
             cls._instance.studentVm = StudentViewModel()
             cls._instance.loginVm = LoginViewModel()
+            cls._instance.memento = MementoAtualizacao()
 
         return cls._instance
     
@@ -103,4 +105,25 @@ class ControllersFacade:
 
     def saveChanges(self):
         self.managerVm.updateChanges()
-        
+
+    def selectStudent(self,name):
+        students = self.studentVm.getStudents()
+        for student in students:
+            if(name == student.getName()):
+                student.printBuddy()
+
+    def updateStudent(self,name,update, selection):
+        students = self.studentVm.getStudents()
+        for student in students:
+            if(name == student.getName()):
+                backup = self.studentVm.copyStudent(student)
+                self.memento.setEstado(backup)
+                self.studentVm.UpdateStudent(student, update, selection)
+
+
+    def backupStudent(self):
+        backup = self.memento.getEstado()
+        students = self.studentVm.getStudents()
+        for student in students:
+            if(backup.getId() == student.getId()):
+                self.studentVm.backupStudent(student, backup)

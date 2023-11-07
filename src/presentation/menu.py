@@ -45,6 +45,6 @@ class Menu():
         
 
     def getoptionsUpdateStudent():
-        print("[1] Atualizar nome.\n[2] Atualizar idade.\n[3] Atualizar senha")
+        print("[1] Atualizar nome.\n[2] Atualizar idade.\n[3] Atualizar senha.")
         option = int(input())
         return option

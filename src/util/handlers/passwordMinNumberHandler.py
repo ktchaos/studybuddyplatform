@@ -1,5 +1,5 @@
-from util.handlers.HandlerIF import Handler
 from util.exceptions.PasswordException import passwordException
+from util.handlers.HandlerIF import Handler
 
 class PasswordMinNumberHandler(Handler):
     def __init__(self) -> None:

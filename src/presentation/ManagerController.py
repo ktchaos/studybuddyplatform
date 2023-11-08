@@ -36,7 +36,8 @@ class ManagerController():
                 elif option == 4:
                     fa.listRooms()
                 elif option == 5:
-                    pass # Entrar na sala
+                    fa.managerVm.enterRoom(fa.roomVm, fa.roomVm.currentRooms[0])
+                    #pass # Entrar na sala
                     #studentVm.enterRoom(room=roomVm.room)
                 elif option == 6:
                     fa.listCategories()

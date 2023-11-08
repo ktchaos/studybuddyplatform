@@ -7,12 +7,14 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 from data.entities.room import Room
 from data.entities.manager import Manager
 
+from data.control.RoomObserver import RoomObserver
+
 from infra.factories.BuddyLocalDataBaseFactory import BuddyLocalDataBaseFactory
 from infra.factories.BuddyRemoteDataBaseFactory import BuddyRemoteDataBaseFactory
 
 # from infra.RoomFile import RoomFile
 
-class ManagerViewModel:
+class ManagerViewModel(RoomObserver):
 
     def __init__(self, id, name):
         self.id = id
@@ -68,3 +70,11 @@ class ManagerViewModel:
     
     def incrementLastBuddyId(self):
         self.LastBuddyId += 1
+
+    def enterRoom(self, roomVm, room: Room):
+        roomVm.addRoomObserver(self)
+        roomVm.notifyRoomObservers(room)
+
+    def update(self, room):
+        print(f"{self.name} entrou na sala {room.title}")
+

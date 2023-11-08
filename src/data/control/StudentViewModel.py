@@ -7,6 +7,7 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 from data.control.BuddyViewModel import BuddyViewModel
 from data.entities.student import Student
 from data.entities.room import Room
+from data.control.RoomObserver import RoomObserver
 
 from util.PasswordValidator import PasswordValidator
 from util.exceptions.PasswordException import passwordException
@@ -16,7 +17,7 @@ from infra.HandleFile import HandleFile
 from infra.factories.BuddyRemoteDataBaseFactory import BuddyRemoteDataBaseFactory
 
 
-class StudentViewModel():
+class StudentViewModel(RoomObserver):
     def __init__(self):
         #  CARREGAR REMOTAMENTE PARA EVITAR CONFLITO DE ARQUIVOS
         self.currentStudents: [Student] = []
@@ -72,6 +73,11 @@ class StudentViewModel():
     def incrementLastStudentId(self):
         self.lastStudentId += 1
     
-    def enterRoom(self, room: Room):
+    def enterRoom(self, roomVm, room: Room):
         room.letStudentEnterRoom(self.student)
+        roomVm.addRoomObserver(self)
+        roomVm.notifyRoomObservers(room)
+
+    def update(self, room):
+        print(f"O estudante {self.student.name} entrou na sala {room.title}")
     

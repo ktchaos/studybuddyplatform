@@ -11,6 +11,7 @@ from infra.HandleFile import HandleFile
 class RoomViewModel:
     def __init__(self):
         self.currentRooms: [Room] = HandleFile().loadRooms()
+        self.roomObservers = []
         ## pega o id do ultimo buddy salvo  
         try:
             self.lastRoomId = self.currentRooms[-1].id
@@ -25,6 +26,7 @@ class RoomViewModel:
     def save(self, room: Room):
         self.currentRooms.append(room)
         HandleFile().saveRooms(self.currentRooms)
+        self.notifyRoomObservers(room)
 
     def getRooms(self):
         return self.currentRooms
@@ -34,4 +36,11 @@ class RoomViewModel:
     
     def incrementLastRoomId(self):
         self.lastRoomId += 1
+
+    def addRoomObserver(self, observer):
+        self.roomObservers.append(observer)
+
+    def notifyRoomObservers(self, room):
+        for observer in self.roomObservers:
+            observer.update(room)
     

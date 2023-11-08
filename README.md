@@ -32,9 +32,12 @@ Legenda:
 🟦 Padrão Singleton  
 🟨 Padrão Template  
 🟧 Padrão Adapter  
-🟪 Padrão Factory  
+🟪 Padrão Factory 
+⬛ Padrão Command
+🟫 Padrão Chain of Responsibility 
+🟥 Padrão Memento
 
-![Alt text](./assets/diagrama_classes_v0.0.3.png "Diagrama de Classes V0.0.3")
+![Alt text](./assets/diagrama_classes_v0.0.4.png "Diagrama de Classes V0.0.3")
 
 ### Diagrama de Casos de Uso V0.0.3
 
@@ -90,7 +93,7 @@ Facilita a integração de sistemas legados com novos sistemas e promove a reuti
 #### Classes
 AuthAdapter, Authentication, FirebaseAuthentication, LocalAuthentication, LoginViewModel.
 
-### Command:
+### ⬛ Command:
 
 #### Aplicação
 O padrão Command encapsula uma solicitação como um objeto, permitindo que você parametrize clientes com operações, filas, desfaça ações, etc.
@@ -99,7 +102,7 @@ Facilita o desacoplamento entre remetentes e destinatários de comandos, possibi
 #### Classes
 LoginExternalCommand, Comman, ControllersFacade.
 
-### Memento:
+### 🟥 Memento:
 
 #### Aplicação
 O padrão Memento captura e externaliza o estado interno de um objeto, permitindo que ele seja restaurado posteriormente.
@@ -107,6 +110,15 @@ O padrão Memento captura e externaliza o estado interno de um objeto, permitind
 É útil para implementar o desfazer/refazer funcionalidade e manter o histórico de estados de um objeto.
 #### Classes
 MementoAtualizacao.
+
+### 🟫 Chain of Responsibility:
+
+#### Aplicação
+O padrão Chain of Responsibility permite que você construa uma cadeia de objetos que processam solicitações sequencialmente, passando a solicitação ao próximo objeto na cadeia, se necessário.
+#### Vantagens
+Permite a flexibilidade na manipulação de solicitações, evitando acoplamento rígido entre remetente e destinatário e simplificando a adição ou remoção de manipuladores.
+#### Classes
+Handler, NameEmptyHandler, NameHasNumberHandler, NameLengthHandler, PasswordLenghtHandler, PasswordLetterNumberHandler, PasswordMinNumberHandler, NameValidator, PasswordValidator
 
 ### Observer:
 
@@ -117,14 +129,7 @@ Facilita a comunicação entre objetos e permite que os observadores reajam dina
 #### Classes
 …
 
-### Chain of Responsibility:
 
-#### Aplicação
-O padrão Chain of Responsibility permite que você construa uma cadeia de objetos que processam solicitações sequencialmente, passando a solicitação ao próximo objeto na cadeia, se necessário.
-#### Vantagens
-Permite a flexibilidade na manipulação de solicitações, evitando acoplamento rígido entre remetente e destinatário e simplificando a adição ou remoção de manipuladores.
-#### Classes
-Handler, NameEmptyHandler, NameHasNumberHandler, NameLengthHandler, PasswordLenghtHandler, PasswordLetterNumberHandler, PasswordMinNumberHandler, NameValidator, PasswordValidator
 
 
 

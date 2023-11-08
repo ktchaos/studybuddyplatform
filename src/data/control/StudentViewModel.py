@@ -9,12 +9,18 @@ from data.entities.student import Student
 from data.entities.room import Room
 from data.control.RoomObserver import RoomObserver
 
+from util.handlers.passwordLetterNumberHandler import PasswordLetterNumberHandler
+from util.handlers.passwordMinNumberHandler import PasswordMinNumberHandler
+from util.handlers.passwordLengthHandler import PasswordLengthHandler
+from util.handlers.nameHasNumberHandler import NameHasNumberHandler
+from util.handlers.nameLengthHandler import NameLengthHandler
+from util.handlers.nameEmptyHandler import NameEmptyHandler
 from util.PasswordValidator import PasswordValidator
-from util.exceptions.PasswordException import passwordException
-from util.exceptions.ErrorNameException import ErrorName
+from util.NameValidator import NameValidator
 
-from infra.HandleFile import HandleFile
+
 from infra.factories.BuddyRemoteDataBaseFactory import BuddyRemoteDataBaseFactory
+from infra.HandleFile import HandleFile
 
 
 class StudentViewModel(RoomObserver):
@@ -35,19 +41,28 @@ class StudentViewModel(RoomObserver):
         self.currentStudents = self.remoteDb.loadBuddies()
 
     def create(self, id, name, age, password):
-        try:
-            authenticate = ErrorName()
-            authenticate.authenticate_name(name)
-        except ErrorName as error:
-            print("Erro:", error)
-        validator = PasswordValidator(password)
-        try:
-            validator = PasswordValidator(password)
-            validator.validatePassword()
-        except passwordException as e:
-            print(f"Erro de validação de senha: {e}")
-            print("Tente novamente.")
-        #validate password
+        # Criando os handlers do nome e definindo a ordem em que os critérios vão ser checados
+        nameHandler = NameEmptyHandler()
+        nameHandler.setNextHandler(NameHasNumberHandler())
+        nameHandler.setNextHandler(NameLengthHandler())
+
+        # Criando o validador do nome
+        nameValidator = NameValidator(nameHandler)
+
+        # Validando o nome
+        nameValidator.validateName(name)
+
+        # Criando os handlers da senha e definindo a ordem em que os critérios vão ser checados
+        passwordHandler = PasswordLengthHandler()
+        passwordHandler.setNextHandler(PasswordLetterNumberHandler())
+        passwordHandler.setNextHandler(PasswordMinNumberHandler())
+
+        # Criando o validador da senha
+        passwordValidator = PasswordValidator(passwordHandler)
+
+        # Validando a senha
+        passwordValidator.validatePassword(password)
+
         createdStudent = Student(
             remoteId="",
             id=id,

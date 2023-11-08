@@ -81,3 +81,19 @@ class StudentViewModel(RoomObserver):
     def update(self, room):
         print(f"O estudante {self.student.name} entrou na sala {room.title}")
     
+    def UpdateStudent(self, student: Student, update, selection):
+        if(selection == 1):
+            student.name = update
+        elif(selection == 2):
+            student.age = int(update)
+        elif(selection == 3):
+            student.password = update
+
+    def backupStudent(self, student: Student, backup: Student):
+        student.name = backup.name
+        student.age = backup.age
+        student.password = student.password
+
+    def copyStudent(self, student: Student):
+        Backup = Student.__copy__(student)
+        return Backup

@@ -124,7 +124,7 @@ O padrão Chain of Responsibility permite que você construa uma cadeia de objet
 #### Vantagens
 Permite a flexibilidade na manipulação de solicitações, evitando acoplamento rígido entre remetente e destinatário e simplificando a adição ou remoção de manipuladores.
 #### Classes
-…
+Handler, NameEmptyHandler, NameHasNumberHandler, NameLengthHandler, PasswordLenghtHandler, PasswordLetterNumberHandler, PasswordMinNumberHandler, NameValidator, PasswordValidator
 
 
 

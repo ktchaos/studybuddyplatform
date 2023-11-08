@@ -127,7 +127,7 @@ O padrão Observer define uma relação um-para-muitos entre objetos, de modo qu
 #### Vantagens
 Facilita a comunicação entre objetos e permite que os observadores reajam dinamicamente a mudanças de estado, sem acoplar fortemente o emissor de eventos.
 #### Classes
-…
+RoomObserver, RoomViewModel, ManagerViewModel, StudentViewModel.
 
 
 

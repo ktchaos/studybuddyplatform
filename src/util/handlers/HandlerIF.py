@@ -1,4 +1,5 @@
 #classe iterface do handler
+
 class Handler:
 	def __init__(self) -> None:
 		self.__next = None
@@ -9,7 +10,7 @@ class Handler:
 		else:
 			self.__next.setNextHandler(next)
 	
-	def handle(self, text: str) -> bool:
+	def handle(self) -> bool:
 		pass
 
 	def handleNext(self, text: str) -> bool:

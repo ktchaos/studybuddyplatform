@@ -1,28 +1,14 @@
 
+from util.handlers.HandlerIF import Handler
 from util.exceptions.PasswordException import passwordException
 
 class PasswordValidator:
-    def __init__(self, password):
-        self.password = password
+    def __init__(self, handler: Handler):
+        self.handler = handler
 
-    def validatePassword(self):
+    def validatePassword(self, password):
         try:
-            self.validateLength()
-            self.validateLetterNumber()
-            self.validateMinNumber()
-            return True
-        except passwordException as e:
-            raise e
-
-    def validateLength(self):
-        if not 8 <= len(self.password) <= 20:
-            raise passwordException("A senha deve ter entre 8 e 20 caracteres.")
-
-    def validateLetterNumber(self):
-        if not any(c.isalpha() for c in self.password) or not any(c.isdigit() for c in self.password):
-            raise passwordException("A senha deve conter letras e números.")
-
-    def validateMinNumber(self):
-        numeros = [c for c in self.password if c.isdigit()]
-        if len(numeros) < 2:
-            raise passwordException("A senha deve conter pelo menos 2 números.")
+            return self.handler.handle(password)
+        except passwordException as error:
+            print(f"Erro de validação de senha: {error}")
+            print("Tente novamente.")

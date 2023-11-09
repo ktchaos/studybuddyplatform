@@ -38,7 +38,7 @@ Legenda:
 🟥 Padrão Memento    
 🩷 Padrão Observer  
 
-![Alt text](./assets/diagrama_classes_v0.0.4.png "Diagrama de Classes V0.0.3")
+![Alt text](./assets/diagrama_classes_v0.1.0.png "Diagrama de Classes V0.0.3")
 
 ### Diagrama de Casos de Uso V0.0.3
 

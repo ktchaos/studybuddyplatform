@@ -32,10 +32,11 @@ Legenda:
 🟦 Padrão Singleton  
 🟨 Padrão Template  
 🟧 Padrão Adapter  
-🟪 Padrão Factory 
-⬛ Padrão Command
-🟫 Padrão Chain of Responsibility 
-🟥 Padrão Memento
+🟪 Padrão Factory   
+⬛ Padrão Command  
+🟫 Padrão Chain of Responsibility   
+🟥 Padrão Memento    
+🩷 Padrão Observer  
 
 ![Alt text](./assets/diagrama_classes_v0.0.4.png "Diagrama de Classes V0.0.3")
 
@@ -120,7 +121,7 @@ Permite a flexibilidade na manipulação de solicitações, evitando acoplamento
 #### Classes
 Handler, NameEmptyHandler, NameHasNumberHandler, NameLengthHandler, PasswordLenghtHandler, PasswordLetterNumberHandler, PasswordMinNumberHandler, NameValidator, PasswordValidator
 
-### Observer:
+### 🩷 Observer:
 
 #### Aplicação
 O padrão Observer define uma relação um-para-muitos entre objetos, de modo que quando um objeto muda de estado, todos os seus observadores são notificados e atualizados automaticamente.
